@@ -1,5 +1,4 @@
 const axios = require('axios')
-const queryString = require('querystring')
 
 const PLUGIN_NAME = 'gatsby-source-nytimes-books-api'
 const NYTIMES_API = "https://api.nytimes.com/svc/books/v3"
@@ -26,8 +25,27 @@ function getResults(resData) {
 }
 
 function getBookLists(options) {
-  const { token } = options
-  return axios(`${NYTIMES_API}${LISTS_ENDPT}${LISTS_NAMES_ENDPT}?api-key=${token}`)
+  const { token, list, date = 'current' } = options
+  let apiUrl = `${NYTIMES_API}${LISTS_ENDPT}`
+
+  /**
+   * if the list name is sent we're getting the list for a date.
+   * if date is not set in options, default to "current"
+   * 
+   * https://developer.nytimes.com/docs/books-product/1/routes/lists/%7Bdate%7D/%7Blist%7D.json/get
+   */
+  if (list) {
+    apiUrl = `${apiUrl}/${list}/${date}`
+  } else {
+    /**
+     * if no list name specified, default to list names endpoint
+     * 
+     * https://developer.nytimes.com/docs/books-product/1/routes/lists/names.json/get
+     */
+    apiUrl = `${apiUrl}${LISTS_NAMES_ENDPT}`
+  }
+
+  return axios(`${apiUrl}?api-key=${token}`)
     .then(data => getResults(data))
     .catch(err => console.log(`Could not get book lists: ${err}`))
 }
@@ -68,16 +86,22 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'best_sellers_date'
       nodeType = 'TimesListOverview'
       data = await getListOverview(options, reporter)
-      console.log(data)
       break;
 
     case TYPE_LISTS:
     default:
+      const { list } = options
+      identifier = 'list_name_encoded'
+
+      if (list) {
+        identifierPrefix = `${identifierPrefix}-date-list`
+        nodeType = 'TimesDateList'
+      } else {
         identifierPrefix = `${identifierPrefix}-list`
-        identifier = 'list_name_encoded'
         nodeType = 'TimesBookList'
-        data = await getBookLists(options, reporter)
-        break;
+      }
+      
+      data = await getBookLists(options, reporter)
       break;
   }
   
