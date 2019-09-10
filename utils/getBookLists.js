@@ -7,7 +7,7 @@ const {
 } = require('../constants')
 
 function getBookLists(options) {
-  const { token, list, date = 'current' } = options
+  const { token, list, date = 'current', offset } = options
   let apiUrl = `${NYTIMES_API}${LISTS_ENDPT}`
 
   /**
@@ -17,7 +17,8 @@ function getBookLists(options) {
    * https://developer.nytimes.com/docs/books-product/1/routes/lists/%7Bdate%7D/%7Blist%7D.json/get
    */
   if (list) {
-    apiUrl = `${apiUrl}/${list}/${date}`
+    const offset = offset ? `offset=${offset}` : ''
+    apiUrl = `${apiUrl}/${date}/${list}${offset}`
   } else {
     /**
      * if no list name specified, default to list names endpoint
