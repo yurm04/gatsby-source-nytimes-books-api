@@ -6,7 +6,7 @@ const {
   LISTS_NAMES_ENDPT,
 } = require('../constants')
 
-function getBookLists(options) {
+function getNamesDatesLists(options) {
   const { token, list, date = 'current', offset } = options
   let apiUrl = `${NYTIMES_API}${LISTS_PATH}`
   const apiToken = `?api-key=${token}`
@@ -35,4 +35,4 @@ function getBookLists(options) {
     .catch(err => console.log(`Could not get book lists: ${err}`))
 }
 
-module.exports = getBookLists
+module.exports = getNamesDatesLists

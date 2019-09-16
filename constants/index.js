@@ -17,6 +17,7 @@ exports.LISTS_PATH = "/lists"
 exports.LISTS_NAMES_ENDPT = "/names.json"
 exports.LISTS_OVERVIEW_ENDPT = '/overview.json'
 exports.REVIEWS_ENDPT = '/reviews.json'
+exports.LISTS_ENDPT = '/lists.json'
 exports.BEST_SELLERS_ENDPT = '/lists/best-sellers/history.json'
 exports.TYPES = [
   TYPE_LISTS,

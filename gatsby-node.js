@@ -1,5 +1,5 @@
 const {
-  getBookLists,
+  getNamesDatesLists,
   getListOverview,
   isObject,
   getReviews,
@@ -8,6 +8,7 @@ const {
 
 const { 
   PLUGIN_NAME,
+  TYPE_LISTS,
   TYPE_OVERVIEW,
   TYPE_REVIEWS,
   TYPE_BEST_SELLERS_HISTORY,
@@ -60,7 +61,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'list_name_encoded'
       identifierPrefix = `${identifierPrefix}-date-list`
       nodeType = 'TimesBooksDateList'
-      data = await getBookLists(options, reporter)
+      data = await getNamesDatesLists(options, reporter)
       break;
 
     case TYPE_NAMES_LIST:
@@ -68,7 +69,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'list_name_encoded'
       identifierPrefix = `${identifierPrefix}-list-name`
       nodeType = 'TimesBooksListName'
-      data = await getBookLists(options, reporter)
+      data = await getNamesDatesLists(options, reporter)
       break;
   }
   
