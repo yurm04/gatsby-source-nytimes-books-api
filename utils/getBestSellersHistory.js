@@ -1,6 +1,7 @@
 const axios = require('axios')
 const getResults = require('./getResults')
-const qs = require('querystring')
+const getQueryString = require('./getQueryString')
+
 const {
   NYTIMES_API,
   BEST_SELLERS_ENDPT,
@@ -9,7 +10,6 @@ const {
 function getBestSellersHistory(options, reporter) {
   const { token, ...params } = options
   const queryObj = { 'api-key': token }
-  const paramKeys = Object.keys(params)
   let apiUrl = `${NYTIMES_API}${BEST_SELLERS_ENDPT}`
   const acceptedParams = [
     'age-group',
@@ -21,14 +21,7 @@ function getBestSellersHistory(options, reporter) {
     'publisher',
     'title'
   ]
-  
-  paramKeys.forEach(key => {
-    if (acceptedParams.includes(key)) {
-      queryObj[key] = params[key]
-    }
-  });
-
-  const queryString = qs.stringify(queryObj)
+  const queryString = getQueryString(params, acceptedParams, queryObj)
   apiUrl = `${apiUrl}?${queryString}`
   
   return axios(apiUrl)

@@ -10,8 +10,6 @@ const {
 function getIdentifier(type, node) {
   switch (type) {
     case TYPE_LISTS:
-      console.log(type)
-      console.log(node)
       const lcName = node.list_name.replace(/\s+/g, '-').toLowerCase()
       const lcTitle = node.book_details[0].title.replace(/\s+/g, '-').toLowerCase()
       return `${lcName}-${lcTitle}`
