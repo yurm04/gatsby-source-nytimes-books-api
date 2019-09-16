@@ -30,7 +30,7 @@ function getBestSellers(options, reporter) {
 
   const queryString = qs.stringify(queryObj)
   apiUrl = `${apiUrl}?${queryString}`
-  console.log(apiUrl)
+  
   return axios(apiUrl)
     .then(data => getResults(data))
     .catch(err => console.log(`Could not get book reviews: ${err}`))

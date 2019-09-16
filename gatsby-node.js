@@ -53,7 +53,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'title'
       nodeType = 'TimesBestSeller'
       data = await getBestSellers(options, reporter)
-      console.log(data)
       break;
 
     case TYPE_LISTS:
