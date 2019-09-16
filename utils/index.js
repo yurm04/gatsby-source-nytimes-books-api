@@ -1,15 +1,19 @@
 const getResults = require('./getResults')
-const getBookLists = require('./getBookLists')
+const getNamesDatesLists = require('./getNamesDatesLists')
 const getToday = require('./getToday')
 const getListOverview = require('./getListOverview')
 const isObject = require('./isObject')
 const getReviews = require('./getReviews')
 const getBestSellersHistory = require('./getBestSellersHistory')
+const getIdentifier = require('./getIdentifier')
+const getLists = require('./getLists')
 
 exports.getResults = getResults
-exports.getBookLists = getBookLists
+exports.getNamesDatesLists = getNamesDatesLists
 exports.getToday = getToday
 exports.getListOverview = getListOverview
 exports.isObject = isObject
 exports.getBestSellersHistory = getBestSellersHistory
 exports.getReviews = getReviews
+exports.getIdentifier = getIdentifier
+exports.getLists = getLists

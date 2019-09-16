@@ -3,7 +3,9 @@ const {
   getListOverview,
   isObject,
   getReviews,
-  getBestSellersHistory
+  getBestSellersHistory,
+  getIdentifier,
+  getLists
 } = require('./utils')
 
 const { 
@@ -31,50 +33,52 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
 
   const { createNode } = actions
   let data
-  let identifier
   let identifierPrefix = 'nytimes'
   let nodeType
 
   switch (type) {
+    case TYPE_LISTS:
+      identifierPrefix = `${identifierPrefix}-lists`
+      nodeType = 'TimesBooksList'
+      data = await getLists(options, reporter)
+      break;
     case TYPE_OVERVIEW:
       identifierPrefix = `${identifierPrefix}-overview`
-      identifier = 'best_sellers_date'
       nodeType = 'TimesBooksListOverview'
       data = await getListOverview(options, reporter)
       break;
     
     case TYPE_REVIEWS:
       identifierPrefix = `${identifierPrefix}-review`
-      identifier = 'publication_dt'
       nodeType = 'TimesBooksReview'
       data = await getReviews(options, reporter)
       break;
 
     case TYPE_BEST_SELLERS_HISTORY: 
       identifierPrefix = `${identifierPrefix}-best-seller`
-      identifier = 'title'
       nodeType = 'TimesBooksBestSellerHistory'
       data = await getBestSellersHistory(options, reporter)
       break;
 
     case TYPE_DATE_LIST:
-      identifier = 'list_name_encoded'
       identifierPrefix = `${identifierPrefix}-date-list`
       nodeType = 'TimesBooksDateList'
       data = await getNamesDatesLists(options, reporter)
       break;
 
     case TYPE_NAMES_LIST:
-    default:
-      identifier = 'list_name_encoded'
       identifierPrefix = `${identifierPrefix}-list-name`
       nodeType = 'TimesBooksListName'
       data = await getNamesDatesLists(options, reporter)
       break;
+      
+    default:
+      reporter.warn(`${PLUGIN_NAME}: type of "${type}" not recognized`)
+      break;
   }
   
   const processNode = (node) => Object.assign({}, node, {
-    id: createNodeId(`${identifierPrefix}-${node[identifier]}`),
+    id: createNodeId(`${identifierPrefix}-${getIdentifier(type, node)}`),
     parent: null,
     children: [],
     internal: {
