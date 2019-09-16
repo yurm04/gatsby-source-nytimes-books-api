@@ -70,14 +70,13 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       data.forEach(datum => {
         processedNode = processNode(datum)
         createNode(processedNode)
-        resolve();
       })
     } else if (isObject(data)) {
       processedNode = processNode(data)
       createNode(processedNode)
-      resolve();
     } else {
-      reject();
+      reporter.info(`No data returned from ${PLUGIN_NAME}, no Gatsby nodes created.`)
+      resolve()
     }
   })
 }
