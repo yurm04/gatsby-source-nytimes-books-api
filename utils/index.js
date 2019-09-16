@@ -4,12 +4,12 @@ const getToday = require('./getToday')
 const getListOverview = require('./getListOverview')
 const isObject = require('./isObject')
 const getReviews = require('./getReviews')
-const getBestSellers = require('./getBestSellers')
+const getBestSellersHistory = require('./getBestSellersHistory')
 
 exports.getResults = getResults
 exports.getBookLists = getBookLists
 exports.getToday = getToday
 exports.getListOverview = getListOverview
 exports.isObject = isObject
-exports.getBestSellers = getBestSellers
+exports.getBestSellersHistory = getBestSellersHistory
 exports.getReviews = getReviews

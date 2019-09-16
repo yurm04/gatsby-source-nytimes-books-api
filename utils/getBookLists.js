@@ -2,13 +2,13 @@ const axios = require('axios')
 const getResults = require('./getResults')
 const {
   NYTIMES_API,
-  LISTS_ENDPT,
+  LISTS_PATH,
   LISTS_NAMES_ENDPT,
 } = require('../constants')
 
 function getBookLists(options) {
   const { token, list, date = 'current', offset } = options
-  let apiUrl = `${NYTIMES_API}${LISTS_ENDPT}`
+  let apiUrl = `${NYTIMES_API}${LISTS_PATH}`
   const apiToken = `?api-key=${token}`
   let offsetParam
 

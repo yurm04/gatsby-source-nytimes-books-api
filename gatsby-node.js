@@ -3,15 +3,16 @@ const {
   getListOverview,
   isObject,
   getReviews,
-  getBestSellers
+  getBestSellersHistory
 } = require('./utils')
 
 const { 
   PLUGIN_NAME,
-  TYPE_LISTS,
   TYPE_OVERVIEW,
   TYPE_REVIEWS,
-  TYPE_BEST_SELLERS,
+  TYPE_BEST_SELLERS_HISTORY,
+  TYPE_DATE_LIST,
+  TYPE_NAMES_LIST,
   TYPES,
 } = require('./constants')
 
@@ -37,37 +38,36 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
     case TYPE_OVERVIEW:
       identifierPrefix = `${identifierPrefix}-overview`
       identifier = 'best_sellers_date'
-      nodeType = 'TimesListOverview'
+      nodeType = 'TimesBooksListOverview'
       data = await getListOverview(options, reporter)
       break;
     
     case TYPE_REVIEWS:
       identifierPrefix = `${identifierPrefix}-review`
       identifier = 'publication_dt'
-      nodeType = 'TimesReview'
+      nodeType = 'TimesBooksReview'
       data = await getReviews(options, reporter)
       break;
 
-    case TYPE_BEST_SELLERS: 
+    case TYPE_BEST_SELLERS_HISTORY: 
       identifierPrefix = `${identifierPrefix}-best-seller`
       identifier = 'title'
-      nodeType = 'TimesBestSeller'
-      data = await getBestSellers(options, reporter)
+      nodeType = 'TimesBooksBestSellerHistory'
+      data = await getBestSellersHistory(options, reporter)
       break;
 
-    case TYPE_LISTS:
-    default:
-      const { list } = options
+    case TYPE_DATE_LIST:
       identifier = 'list_name_encoded'
+      identifierPrefix = `${identifierPrefix}-date-list`
+      nodeType = 'TimesBooksDateList'
+      data = await getBookLists(options, reporter)
+      break;
 
-      if (list) {
-        identifierPrefix = `${identifierPrefix}-date-list`
-        nodeType = 'TimesDateList'
-      } else {
-        identifierPrefix = `${identifierPrefix}-list`
-        nodeType = 'TimesBookList'
-      }
-      
+    case TYPE_NAMES_LIST:
+    default:
+      identifier = 'list_name_encoded'
+      identifierPrefix = `${identifierPrefix}-list-name`
+      nodeType = 'TimesBooksListName'
       data = await getBookLists(options, reporter)
       break;
   }

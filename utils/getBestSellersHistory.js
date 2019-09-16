@@ -6,7 +6,7 @@ const {
   BEST_SELLERS_ENDPT,
 } = require('../constants')
 
-function getBestSellers(options, reporter) {
+function getBestSellersHistory(options, reporter) {
   const { token, ...params } = options
   const queryObj = { 'api-key': token }
   const paramKeys = Object.keys(params)
@@ -36,4 +36,4 @@ function getBestSellers(options, reporter) {
     .catch(err => console.log(`Could not get book reviews: ${err}`))
 }
 
-module.exports = getBestSellers
+module.exports = getBestSellersHistory
