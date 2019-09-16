@@ -2,7 +2,8 @@ const {
   getBookLists,
   getListOverview,
   isObject,
-  getReviews
+  getReviews,
+  getBestSellers
 } = require('./utils')
 
 const { 
@@ -10,6 +11,7 @@ const {
   TYPE_LISTS,
   TYPE_OVERVIEW,
   TYPE_REVIEWS,
+  TYPE_BEST_SELLERS,
   TYPES,
 } = require('./constants')
 
@@ -44,6 +46,14 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'publication_dt'
       nodeType = 'TimesReview'
       data = await getReviews(options, reporter)
+      break;
+
+    case TYPE_BEST_SELLERS: 
+      identifierPrefix = `${identifierPrefix}-best-seller`
+      identifier = 'title'
+      nodeType = 'TimesBestSeller'
+      data = await getBestSellers(options, reporter)
+      console.log(data)
       break;
 
     case TYPE_LISTS:
