@@ -30,7 +30,6 @@ function getBookLists(options) {
     apiUrl = `${apiUrl}${LISTS_NAMES_ENDPT}${apiToken}`
   }
 
-  console.log(apiUrl)
   return axios(`${apiUrl}`)
     .then(data => getResults(data))
     .catch(err => console.log(`Could not get book lists: ${err}`))

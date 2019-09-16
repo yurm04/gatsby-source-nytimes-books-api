@@ -1,13 +1,16 @@
 const {
   getBookLists,
   getListOverview,
-  isObject
+  isObject,
+  getReviews
 } = require('./utils')
 
 const { 
   PLUGIN_NAME,
   TYPE_LISTS,
   TYPE_OVERVIEW,
+  TYPE_REVIEWS,
+  TYPES,
 } = require('./constants')
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, reporter }, options) => {
@@ -18,8 +21,8 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
     return
   }
 
-  if (!type) {
-    reporter.info(`\`type\` not set for ${PLUGIN_NAME}.  Defaulting to \`type: list\` `)
+  if (!type || !TYPES.includes(type)) {
+    reporter.info(`\`type\` not valid for ${PLUGIN_NAME}.  Defaulting to \`type: list\` `)
   }
 
   const { createNode } = actions
@@ -34,6 +37,13 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       identifier = 'best_sellers_date'
       nodeType = 'TimesListOverview'
       data = await getListOverview(options, reporter)
+      break;
+    
+    case TYPE_REVIEWS:
+      identifierPrefix = `${identifierPrefix}-review`
+      identifier = 'publication_dt'
+      nodeType = 'TimesReview'
+      data = await getReviews(options, reporter)
       break;
 
     case TYPE_LISTS:
@@ -76,7 +86,8 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
       createNode(processedNode)
     } else {
       reporter.info(`No data returned from ${PLUGIN_NAME}, no Gatsby nodes created.`)
-      resolve()
     }
+
+    resolve()
   })
 }
