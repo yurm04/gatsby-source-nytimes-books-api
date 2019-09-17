@@ -4,7 +4,7 @@ const getQueryString = require("./getQueryString")
 
 const { NYTIMES_API, BEST_SELLERS_ENDPT } = require("../constants")
 
-function getBestSellersHistory(options) {
+function getBestSellersHistory(options, reporter) {
   const { token, ...params } = options
   const queryObj = { "api-key": token }
   let apiUrl = `${NYTIMES_API}${BEST_SELLERS_ENDPT}`
@@ -23,7 +23,7 @@ function getBestSellersHistory(options) {
 
   return axios(apiUrl)
     .then(data => getResults(data))
-    .catch(err => console.log(`Could not get book reviews: ${err}`))
+    .catch(err => reporter.error(`Could not get book reviews: ${err}`))
 }
 
 module.exports = getBestSellersHistory

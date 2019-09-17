@@ -3,7 +3,7 @@ const getResults = require("./getResults")
 const getQueryString = require("./getQueryString")
 const { NYTIMES_API, LISTS_ENDPT } = require("../constants")
 
-function getLists(options) {
+function getLists(options, reporter) {
   const { token, ...params } = options
   const queryObj = { "api-key": token }
   let apiUrl = `${NYTIMES_API}${LISTS_ENDPT}`
@@ -18,7 +18,7 @@ function getLists(options) {
 
   return axios(apiUrl)
     .then(data => getResults(data))
-    .catch(err => console.log(`Could not get bestsellers lists: ${err}`))
+    .catch(err => reporter.error(`Could not get bestsellers lists: ${err}`))
 }
 
 module.exports = getLists

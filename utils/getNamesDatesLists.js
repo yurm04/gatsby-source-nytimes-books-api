@@ -2,7 +2,7 @@ const axios = require("axios")
 const getResults = require("./getResults")
 const { NYTIMES_API, LISTS_PATH, LISTS_NAMES_ENDPT } = require("../constants")
 
-function getNamesDatesLists(options) {
+function getNamesDatesLists(options, reporter) {
   const { token, list, date = "current", offset } = options
   let apiUrl = `${NYTIMES_API}${LISTS_PATH}`
   const apiToken = `?api-key=${token}`
@@ -28,7 +28,7 @@ function getNamesDatesLists(options) {
 
   return axios(`${apiUrl}`)
     .then(data => getResults(data))
-    .catch(err => console.log(`Could not get book lists: ${err}`))
+    .catch(err => reporter.error(`Could not get book lists: ${err}`))
 }
 
 module.exports = getNamesDatesLists
