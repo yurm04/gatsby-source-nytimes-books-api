@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
     "lint": "eslint --fix",
     "lint-script-staged": "npm run lint"
   },
@@ -15,11 +14,11 @@
     "axios": "^0.19.0"
   },
   "devDependencies": {
-    "ava": "^2.4.0",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.5",
+    "jest": "^24.9.0",
     "lint-staged": "^9.2.5",
     "prettier": "1.18.2"
   },
@@ -31,7 +30,6 @@
   "lint-staged": {
     "**/*.js": [
       "npm run lint-script-staged --",
-      "npm run test",
       "git add"
     ]
   }
