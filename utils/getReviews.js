@@ -1,10 +1,7 @@
-const axios = require('axios')
-const getResults = require('./getResults')
-const qs = require('querystring')
-const {
-  NYTIMES_API,
-  PLUGIN_NAME
-} = require('../constants')
+const axios = require("axios")
+const getResults = require("./getResults")
+const qs = require("querystring")
+const { NYTIMES_API, PLUGIN_NAME } = require("../constants")
 
 function getReviews(options, reporter) {
   const { token, isbn, author, title } = options
@@ -15,7 +12,9 @@ function getReviews(options, reporter) {
 
   if (!paramKeys.length) {
     return new Promise(function(_, reject) {
-      reporter.warn(`${PLUGIN_NAME}: reviews endpoint requires at least one query parameter value`)
+      reporter.warn(
+        `${PLUGIN_NAME}: reviews endpoint requires at least one query parameter value`
+      )
       return reject()
     })
   }
@@ -27,9 +26,9 @@ function getReviews(options, reporter) {
     }
   })
 
-  const query = qs.stringify({ 'api-key': token, ...queryObj })
+  const query = qs.stringify({ "api-key": token, ...queryObj })
   apiUrl = `${apiUrl}?${query}`
-  
+
   return axios(apiUrl)
     .then(data => getResults(data))
     .catch(err => console.log(`Could not get book reviews: ${err}`))
