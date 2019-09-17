@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --fix . && echo 'Lint complete.'"
+    "lint": "eslint --fix",
+    "lint-script-staged": "npm run lint"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,22 @@
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "prettier": "1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,json}": [
+      "npm run lint-script-staged --",
+      "git add"
+    ],
+    "**/*.js": [
+      "npm run test"
+    ]
   }
 }
