@@ -1,5 +1,5 @@
 import test from "ava"
 
-test("my passing test", t => {
+test("my greatest passing test", t => {
   t.pass()
 })

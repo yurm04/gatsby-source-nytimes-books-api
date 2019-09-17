@@ -31,6 +31,7 @@
   "lint-staged": {
     "**/*.js": [
       "npm run lint-script-staged --",
+      "npm run test",
       "git add"
     ]
   }
