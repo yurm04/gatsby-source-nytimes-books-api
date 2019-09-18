@@ -47,6 +47,7 @@ exports.sourceNodes = async (
       nodeType = "TimesBooksList"
       data = await getLists(options, reporter)
       break
+
     case TYPE_OVERVIEW:
       identifierPrefix = `${identifierPrefix}-overview`
       nodeType = "TimesBooksListOverview"
