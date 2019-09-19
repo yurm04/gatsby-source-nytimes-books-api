@@ -16,7 +16,6 @@
     "test": "jest",
     "lint-test-staged": "jest --bail --findRelatedTests"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {

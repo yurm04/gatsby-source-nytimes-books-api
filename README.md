@@ -3,20 +3,19 @@ This [GatsyJS](https://gatsbyjs.org) source plugin fetches data from the [NYTime
 
 [Demo Site](https://addhere.com)
 
-
 ## How to install
 `npm install @yurm04/gatsby-source-nytimes-books-api`
 
 ## How to use
-Add a config object to your Gatsby `config.js` file.
+Add a config object to your Gatsby `config.js` file.  You must include an api key obtained from the [NYTimes Developer Network](https://developer.nytimes.com/)
 
 ```javascript
 // config.js
 {
   resolve: "gatsby-source-nytimes-books-api",
   options: {
-    token: 'YOUR_API_KEY',
-    type: 'history'
+    token: 'YOUR_API_KEY', // aqcuire from the NYTimes api site
+    type: 'history' // the books data you want access to
     // additional properties for query parameters
   }
 }
@@ -325,5 +324,7 @@ query MyQuery {
 `npm test`
 
 ## How to develop locally
+To work on this plugin locally take a look at Gatsby's [documentation](https://www.gatsbyjs.org/docs/creating-a-local-plugin/) on creating a local plugin.  Essentially, you will need to include this plugin in a `plugins` directory of another project to test changes.
+
 ## How to contribute
-If you have unanswered questions, would like help with enhancing or debugging the plugin, it is nice to include instructions for people who want to contribute to your plugin.
+Check out the [CONTRIBUTING guide](docs/CONTRIBUTING.md) to find out how you can get involved!
