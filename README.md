@@ -2,7 +2,7 @@
 This [GatsyJS](https://gatsbyjs.org) source plugin fetches data from the [NYTimes Books API](https://developer.nytimes.com/docs/books-product/1/overview)
 
 ## How to install
-`npm install @yurm04/gatsby-source-nytimes-books-api`
+`npm i gatsby-source-nytimes-books-api`
 
 ## How to use
 Add a config object to your Gatsby `config.js` file.  You must include an api key obtained from the [NYTimes Developer Network](https://developer.nytimes.com/)
