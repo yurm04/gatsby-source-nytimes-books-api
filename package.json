@@ -17,7 +17,7 @@
     "lint-test-staged": "jest --bail --findRelatedTests"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.",
   "dependencies": {
     "axios": "^0.19.0"
   },
