@@ -322,7 +322,7 @@ query MyQuery {
 `npm test`
 
 ## How to develop locally
-To work on this plugin locally take a look at Gatsby's [documentation](https://www.gatsbyjs.org/docs/creating-a-local-plugin/) on creating a local plugin.  Essentially, you will need to include this plugin in a `plugins` directory of another project to test changes.
+To work on this plugin locally take a look at Gatsby's [documentation](https://www.gatsbyjs.org/docs/creating-a-local-plugin/) on creating a local plugin.  You will need to include this plugin in a `plugins` directory of another gatsby project to test changes.
 
 ## How to contribute
 Check out the [CONTRIBUTING guide](docs/CONTRIBUTING.md) to find out how you can get involved!
