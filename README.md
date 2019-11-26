@@ -1,5 +1,7 @@
 # Gatsby Source NYTimes Books API Plugin
-This [GatsyJS](https://gatsbyjs.org) source plugin fetches data from the [NYTimes Books API](https://developer.nytimes.com/docs/books-product/1/overview)
+This [GatsyJS](https://gatsbyjs.org) source plugin fetches data from the [NYTimes Books API](https://developer.nytimes.com/docs/books-product/1/overview) 📚
+
+Check out the [CONTRIBUTING guide](docs/CONTRIBUTING.md) to find out how you can get involved!
 
 ## How to install
 `npm i gatsby-source-nytimes-books-api`
@@ -311,6 +313,3 @@ query MyQuery {
   }
 }
 ```
-
-## How to contribute
-Check out the [CONTRIBUTING guide](docs/CONTRIBUTING.md) to find out how you can get involved!
