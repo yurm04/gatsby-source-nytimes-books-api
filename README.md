@@ -129,10 +129,6 @@ query {
 ### `date-list`
 
 ```graphql
-Explorer
-query 
-MyQuery
-Docs
 query {
   allTimesBooksDateList {
     nodes {
@@ -199,7 +195,6 @@ query {
 ### `history`
 
 ```graphql
-
 query {
   allTimesBooksBestSellerHistory {
     nodes {
