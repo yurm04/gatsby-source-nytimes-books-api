@@ -35,14 +35,18 @@ $  npm install
 ```
 
 ### Setup
-To set up the plugin in your Gatsby project you will have to add it to your project's `config.js`.  Check out the [README](../README.md#how-to-use) for details on what properties to include.  Once you include the plugin, you can run Gatsby locally and you should be able to query data:
+To set up the plugin in your Gatsby project you will have to add it to your project's `gatsby-config.js`.  Check out the [README](../README.md#how-to-use) for details on what properties to include.  Once you include the plugin, you can run Gatsby locally and you should be able to query data:
 
 ```
 gatsby develop
 ```
 
-#### Testing Locally
-To test changes made locally, make sure you are querying and receiving the data you expect.  Refer to the [README](../README.md#how-to-query-for-data) to find out what is queryable.
+#### Validating Locally
+To validate changes made locally, make sure you are querying and receiving the data you expect.  Refer to the [README](../README.md#how-to-query-for-data) to find out what is queryable.
 
 #### Tests and Linting
 This project uses the git hooks via the [`husky`](https://github.com/typicode/husky/tree/v0.14.3) package to run tests and lint code before each commit.  When making changes to the codebase please make sure to lint and write tests against your work.
+
+#### How to run tests
+
+`npm test`
